@@ -6,7 +6,6 @@ import user from '../images/user.jpeg';
 import {useState} from 'react';
 
 function App() {
-
   const [createCard, setCreateCard] = useState('');
   const [projectName, setProjectName] = useState('');
   const [slogan, setSlogan] = useState('');
