@@ -15,6 +15,7 @@ function App() {
   const [desc, setDesc] = useState('');
   const [autor, setAutor] = useState('');
   const [job, setJob] = useState('');
+  const [campo, setCampo] = useState('');
 
   const handleInput = (ev) => {
     if (ev.target.id === 'name') {
@@ -34,9 +35,9 @@ function App() {
     } else if (ev.target.id === 'job') {
       setJob(ev.target.value);
     }
+  setCampo(ev.target.value);
   }
 
-  
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
@@ -96,6 +97,7 @@ function App() {
               id="name"
               onInput={handleInput}
             />
+            <p>{(campo) ? '' : 'Este campo es obligatorio'}</p>
             <input
               className="input"
               type="text"
