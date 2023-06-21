@@ -6,7 +6,6 @@ import user from '../images/user.jpeg';
 import {useState} from 'react';
 
 function App() {
-
   const [createCard, setCreateCard] = useState('');
   const [projectName, setProjectName] = useState('');
   const [slogan, setSlogan] = useState('');
@@ -58,26 +57,26 @@ function App() {
 
           <section className="autor">
             <section className="info-project">
-              <p className="subtitle">{repo}</p>
+              <p className="subtitle">{repo || 'Repo'}</p>
               <hr className="line" />
 
-              <h2 className="title">{projectName}</h2>
-              <p className="slogan">{slogan}</p>
+              <h2 className="title">{projectName || 'Nombre del proyecto'}</h2>
+              <p className="slogan">{slogan || 'Slogan'}</p>
               <p className="desc">
                 {desc}
               </p>
               <section className="technologies">
-                <p className="text">{tech}</p>
-                <p className="text">{demo}</p>
+                <p className="text">{tech || 'Tecnologias'}</p>
+                <p className="text">{demo || 'Demo'}</p>
               </section>
             </section>
 
             <section className="info-autor">
-              <img className="image" src={user} alt="" />
-              <p className="job">{job}</p>
-              <p className="name">{autor}</p>
+              <img className="image" src={user } alt="" />
+              <p className="job">{job || 'Trabajo'}</p>
+              <p className="name">{autor || 'Nombre'}</p>
             </section>
-          </section>
+          </section>g
         </section>
 
         <section className="form">
