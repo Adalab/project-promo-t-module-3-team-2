@@ -50,7 +50,6 @@ function App() {
       setJob(ev.target.value);
       setJobError(ev.target.value === '');
     }
-  setCampo(ev.target.value);
   }
 
 
@@ -92,7 +91,7 @@ function App() {
               <p className="job">{job || 'Trabajo'}</p>
               <p className="name">{autor || 'Nombre'}</p>
             </section>
-          </section>g
+          </section>
         </section>
 
         <section className="form">
