@@ -22,7 +22,11 @@ function App() {
   const [autor, setAutor] = useState('');
   const [autorError, setAutorError] = useState(false);
   const [job, setJob] = useState('');
+<<<<<<< HEAD
   const [jobError, setJobError] = useState(false);
+=======
+  const [campo, setCampo] = useState('');
+>>>>>>> 885b2f9e8eee10250f99ce97445f432cbb8a7b67
 
   const handleInput = (ev) => {
     if (ev.target.id === 'name') {
@@ -50,9 +54,9 @@ function App() {
       setJob(ev.target.value);
       setJobError(ev.target.value === '');
     }
+  setCampo(ev.target.value);
   }
 
-  
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
@@ -112,7 +116,11 @@ function App() {
               id="name"
               onInput={handleInput}
             />
+<<<<<<< HEAD
             {projectNameError && <p className="error-message">* Este campo es obligatorio</p>}
+=======
+            <p>{(campo) ? '' : 'Este campo es obligatorio'}</p>
+>>>>>>> 885b2f9e8eee10250f99ce97445f432cbb8a7b67
             <input
               className={`input ${sloganError ? 'error' : ''}`}
               type="text"
