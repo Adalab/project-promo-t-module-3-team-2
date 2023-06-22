@@ -50,9 +50,9 @@ function App() {
       setJob(ev.target.value);
       setJobError(ev.target.value === '');
     }
+  setCampo(ev.target.value);
   }
 
-  
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
