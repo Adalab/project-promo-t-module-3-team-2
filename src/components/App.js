@@ -3,31 +3,28 @@ import cover2 from '../images/cover_2.jpeg';
 import cover from '../images/cover.jpeg';
 import logo from '../images/logo-adalab.png';
 import user from '../images/user.jpeg';
-import {useState} from 'react';
+import { useState } from 'react';
 
 function App() {
   const [createCard, setCreateCard] = useState('');
-  const [data, setData] = useState({projectName: '', slogan: '', repo: '',demo: '', tech:'',desc: '', autor:'', job:'' });
-  
-  
-  
-  
-  //const [createCard, setCreateCard] = useState('');
-  //const [projectName, setProjectName] = useState('');
+  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' });
+
+
+
   const [projectNameError, setProjectNameError] = useState(false);
-  //const [slogan, setSlogan] = useState('');
+
   const [sloganError, setSloganError] = useState(false);
-  //const [repo, setRepo] = useState('');
+
   const [repoError, setRepoError] = useState(false);
-  //const [demo, setDemo] = useState('');
+
   const [demoError, setDemoError] = useState(false);
-  //const [tech, setTech] = useState('');
+
   const [techError, setTechError] = useState(false);
-  //const [desc, setDesc] = useState('');
-  const [descError, setDescError] = useState(false);
-  //const [autor, setAutor] = useState('');
+
+  const [descError, setDescError] = useState(false);s
+
   const [autorError, setAutorError] = useState(false);
-  //const [job, setJob] = useState('');
+
   const [jobError, setJobError] = useState(false);
 
 
@@ -37,55 +34,54 @@ function App() {
     if (ev.target.id === 'name') {
       data.projectName = ev.target.value;
       setProjectNameError(ev.target.value === '');
-      //setData({...data});
+
     }
     if (ev.target.id === 'slogan') {
       data.slogan = ev.target.value;
       setSloganError(ev.target.value === '');
-      //setData({...data});
+
     }
     if (ev.target.id === 'repo') {
       data.repo = ev.target.value;
       setRepoError(ev.target.value === '');
-      //setData({...data});
+
     }
     if (ev.target.id === 'demo') {
       data.demo = ev.target.value;
       setDemoError(ev.target.value === '');
-     //setData({...data});
+
     }
     if (ev.target.id === 'technologies') {
       data.tech = ev.target.value;
       setTechError(ev.target.value === '');
-      //setData({...data});
+
     }
     if (ev.target.id === 'desc') {
       data.desc = ev.target.value;
       setDescError(ev.target.value === '');
-      //setData({...data});
+
     }
     if (ev.target.id === 'autor') {
       data.autor = ev.target.value;
       setAutorError(ev.target.value === '');
-      //setData({...data});
     }
     if (ev.target.id === 'job') {
       data.job = ev.target.value;
-      setJobError(ev.target.value === ''); 
+      setJobError(ev.target.value === '');
     }
-    setData({...data});
+    setData({ ...data });
   }
 
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
-    if(createCard === '') {
+    if (createCard === '') {
       setCreateCard('')
     }
   }
 
   return (
-    
+
     <div className="container">
       <header className="header">
         <p className="text">Proyectos Molones</p>
@@ -111,7 +107,7 @@ function App() {
             </section>
 
             <section className="info-autor">
-              <img className="image" src={user } alt="" />
+              <img className="image" src={user} alt="" />
               <p className="job">{data.job || 'Trabajo'}</p>
               <p className="name">{data.autor || 'Nombre'}</p>
             </section>
@@ -228,7 +224,7 @@ function App() {
         </section>
       </main>
     </div>
-    
+
   );
 }
 
