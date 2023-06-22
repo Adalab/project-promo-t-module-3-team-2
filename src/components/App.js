@@ -3,65 +3,85 @@ import cover2 from '../images/cover_2.jpeg';
 import cover from '../images/cover.jpeg';
 import logo from '../images/logo-adalab.png';
 import user from '../images/user.jpeg';
-import {useState} from 'react';
+import { useState } from 'react';
 
 function App() {
   const [createCard, setCreateCard] = useState('');
-  const [projectName, setProjectName] = useState('');
+  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' });
+
+
+
   const [projectNameError, setProjectNameError] = useState(false);
-  const [slogan, setSlogan] = useState('');
+
   const [sloganError, setSloganError] = useState(false);
-  const [repo, setRepo] = useState('');
+
   const [repoError, setRepoError] = useState(false);
-  const [demo, setDemo] = useState('');
+
   const [demoError, setDemoError] = useState(false);
-  const [tech, setTech] = useState('');
+
   const [techError, setTechError] = useState(false);
-  const [desc, setDesc] = useState('');
-  const [descError, setDescError] = useState(false);
-  const [autor, setAutor] = useState('');
+
+  const [descError, setDescError] = useState(false);s
+
   const [autorError, setAutorError] = useState(false);
-  const [job, setJob] = useState('');
+
   const [jobError, setJobError] = useState(false);
+
+
+
 
   const handleInput = (ev) => {
     if (ev.target.id === 'name') {
-      setProjectName(ev.target.value);
+      data.projectName = ev.target.value;
       setProjectNameError(ev.target.value === '');
-    } else if (ev.target.id === 'slogan') {
-      setSlogan(ev.target.value);
+
+    }
+    if (ev.target.id === 'slogan') {
+      data.slogan = ev.target.value;
       setSloganError(ev.target.value === '');
-    } else if (ev.target.id === 'repo') {
-      setRepo(ev.target.value);
+
+    }
+    if (ev.target.id === 'repo') {
+      data.repo = ev.target.value;
       setRepoError(ev.target.value === '');
-    } else if (ev.target.id === 'demo') {
-      setDemo(ev.target.value);
+
+    }
+    if (ev.target.id === 'demo') {
+      data.demo = ev.target.value;
       setDemoError(ev.target.value === '');
-    } else if (ev.target.id === 'technologies') {
-      setTech(ev.target.value);
+
+    }
+    if (ev.target.id === 'technologies') {
+      data.tech = ev.target.value;
       setTechError(ev.target.value === '');
-    } else if (ev.target.id === 'desc') {
-      setDesc(ev.target.value);
+
+    }
+    if (ev.target.id === 'desc') {
+      data.desc = ev.target.value;
       setDescError(ev.target.value === '');
-    } else if (ev.target.id === 'autor') {
-      setAutor(ev.target.value);
+
+    }
+    if (ev.target.id === 'autor') {
+      data.autor = ev.target.value;
       setAutorError(ev.target.value === '');
-    } else if (ev.target.id === 'job') {
-      setJob(ev.target.value);
+    }
+    if (ev.target.id === 'job') {
+      data.job = ev.target.value;
       setJobError(ev.target.value === '');
     }
+    setData({ ...data });
   }
 
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
-    if(createCard === '') {
+    if (createCard === '') {
       setCreateCard('')
     }
   }
 
   return (
-    
+
     <div className="container">
       <header className="header">
         <p className="text">Proyectos Molones</p>
@@ -72,24 +92,24 @@ function App() {
 
           <section className="autor">
             <section className="info-project">
-              <p className="subtitle">{repo || 'Repo'}</p>
+              <p className="subtitle">{data.repo || 'Repo'}</p>
               <hr className="line" />
 
-              <h2 className="title">{projectName || 'Nombre del proyecto'}</h2>
-              <p className="slogan">{slogan || 'Slogan'}</p>
+              <h2 className="title">{data.projectName || 'Nombre del proyecto'}</h2>
+              <p className="slogan">{data.slogan || 'Slogan'}</p>
               <p className="desc">
-                {desc}
+                {data.desc}
               </p>
               <section className="technologies">
-                <p className="text">{tech || 'Tecnologias'}</p>
-                <p className="text">{demo || 'Demo'}</p>
+                <p className="text">{data.tech || 'Tecnologias'}</p>
+                <p className="text">{data.demo || 'Demo'}</p>
               </section>
             </section>
 
             <section className="info-autor">
-              <img className="image" src={user } alt="" />
-              <p className="job">{job || 'Trabajo'}</p>
-              <p className="name">{autor || 'Nombre'}</p>
+              <img className="image" src={user} alt="" />
+              <p className="job">{data.job || 'Trabajo'}</p>
+              <p className="name">{data.autor || 'Nombre'}</p>
             </section>
           </section>
         </section>
@@ -109,6 +129,7 @@ function App() {
               placeholder="Nombre del proyecto"
               name="name"
               id="name"
+              value={data.projectName}
               onInput={handleInput}
             />
             {projectNameError && <p className="error-message">* Este campo es obligatorio</p>}
@@ -118,6 +139,7 @@ function App() {
               name="slogan"
               id="slogan"
               placeholder="Slogan"
+              value={data.slogan}
               onInput={handleInput}
             />
             {sloganError && <p className="error-message">* Este campo es obligatorio</p>}
@@ -202,7 +224,7 @@ function App() {
         </section>
       </main>
     </div>
-    
+
   );
 }
 
