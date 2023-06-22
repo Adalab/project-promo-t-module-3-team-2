@@ -21,7 +21,7 @@ function App() {
 
   const [techError, setTechError] = useState(false);
 
-  const [descError, setDescError] = useState(false);s
+  const [descError, setDescError] = useState(false);
 
   const [autorError, setAutorError] = useState(false);
 
