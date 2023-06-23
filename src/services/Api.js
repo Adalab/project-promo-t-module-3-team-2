@@ -23,3 +23,30 @@ const callToApi = (data) => {
 
 export default callToApi;
 */
+
+//Fichero src/services/api.js
+
+const callToApi = (requestData) => {
+  return fetch('https://dev.adalab.es/api/projectCard', {
+    method: 'POST',
+    body: JSON.stringify(requestData),
+    headers: { 'Content-Type': 'application/json' },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const result = {
+        image: requestData.image,
+        projectName: data.projectName,
+        slogan: data.slogan,
+        repo: data.repo,
+        demo: data.demo,
+        tech: data.tech,
+        desc: data.desc,
+        autor: data.autor,
+        job: data.job,
+      };
+      return result;
+    });
+};
+
+export default callToApi;

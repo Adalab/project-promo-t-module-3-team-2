@@ -1,10 +1,10 @@
+import { useState } from 'react';
+import callToApi from '../services/Api.js';
 import '../styles/App.scss';
 import cover2 from '../images/cover_2.jpeg';
 import cover from '../images/cover.jpeg';
 import logo from '../images/logo-adalab.png';
 import user from '../images/user.jpeg';
-import { useState } from 'react';
-import callToApi from '../services/Api';
 
 function App() {
   const [createCard, setCreateCard] = useState('');
