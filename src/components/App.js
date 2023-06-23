@@ -4,6 +4,7 @@ import cover from '../images/cover.jpeg';
 import logo from '../images/logo-adalab.png';
 import user from '../images/user.jpeg';
 import { useState } from 'react';
+import callToApi from '../services/Api';
 
 function App() {
   const [createCard, setCreateCard] = useState('');
@@ -75,6 +76,8 @@ function App() {
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
+
+
     if (createCard === '') {
       setCreateCard('')
     }
