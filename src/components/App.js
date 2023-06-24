@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import callToApi from '../services/Api.js';
 import '../styles/App.scss';
 import cover2 from '../images/cover_2.jpeg';
@@ -6,10 +6,11 @@ import cover from '../images/cover.jpeg';
 import logo from '../images/logo-adalab.png';
 import user from '../images/user.jpeg';
 
-function App() {
-  const [createCard, setCreateCard] = useState('');
-  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' });
 
+function App() {
+  
+  const [createCard, setCreateCard] = useState('');
+  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' });  
 
 
   const [projectNameError, setProjectNameError] = useState(false);
@@ -28,9 +29,7 @@ function App() {
 
   const [jobError, setJobError] = useState(false);
 
-
-
-
+  
   const handleInput = (ev) => {
     if (ev.target.id === 'name') {
       data.projectName = ev.target.value;
@@ -77,6 +76,7 @@ function App() {
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
 
+    callToApi();
 
     if (createCard === '') {
       setCreateCard('')
@@ -221,7 +221,7 @@ function App() {
           </section>
 
           <section className="card">
-            <span className=""> La tarjeta ha sido creada: </span>
+            <span className=""> La tarjeta ha sido creada: {callToApi}</span>
             <a href='./#' className="" target="_blank" rel="noreferrer"> </a>
           </section>
         </section>
