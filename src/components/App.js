@@ -10,7 +10,11 @@ import user from '../images/user.jpeg';
 function App() {
   
   const [createCard, setCreateCard] = useState('');
-  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' });  
+  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' }); 
+  
+  const [url, setUrl] = useState('');
+  const [info, setInfo] = useState('');
+  const [avatar, setAvatar] = useState('');
 
 
   const [projectNameError, setProjectNameError] = useState(false);
@@ -76,7 +80,26 @@ function App() {
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
 
-    callToApi();
+    callToApi(data).then((info) => {
+      console.log(info);
+      if(!info.success) {
+        if(info.error.includes("Mandatory fields:")) {
+          setCreateCard("Todos los campos son obligatorios");
+        } else if (info.error.includes("Database error: ER_DATA_TOO_LONG")) {
+          setCreateCard("La foto es demasiado grande");
+        } else if (info.error.includes("Database error: Database was shut down")) {
+          setCreateCard("Error con el servidor");
+        } else {
+          setCreateCard("Ha ocurrido un error");
+        }
+        setUrl('');
+        setInfo('');
+      } else if (info.success) {
+        setUrl(info.cardUrl);
+        setInfo(info);
+        data.push(data);
+      }
+    });
 
     if (createCard === '') {
       setCreateCard('')
@@ -221,7 +244,7 @@ function App() {
           </section>
 
           <section className="card">
-            <span className=""> La tarjeta ha sido creada: {callToApi}</span>
+            <span className=""> La tarjeta ha sido creada: </span>
             <a href='./#' className="" target="_blank" rel="noreferrer"> </a>
           </section>
         </section>
