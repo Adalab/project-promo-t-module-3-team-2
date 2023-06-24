@@ -10,11 +10,19 @@ import user from '../images/user.jpeg';
 function App() {
   
   const [createCard, setCreateCard] = useState('');
-  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' }); 
+  const [data, setData] = useState(
+    { 
+      projectName: '', 
+      slogan: '', 
+      repo: '', 
+      demo: '', 
+      tech: '', 
+      desc: '', 
+      autor: '', 
+      job: '', 
+      image: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg', photo: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg'}); 
   
   const [url, setUrl] = useState('');
-  const [info, setInfo] = useState('');
-  const [avatar, setAvatar] = useState('');
 
 
   const [projectNameError, setProjectNameError] = useState(false);
@@ -80,24 +88,13 @@ function App() {
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
 
-    callToApi(data).then((info) => {
-      console.log(info);
-      if(!info.success) {
-        if(info.error.includes("Mandatory fields:")) {
-          setCreateCard("Todos los campos son obligatorios");
-        } else if (info.error.includes("Database error: ER_DATA_TOO_LONG")) {
-          setCreateCard("La foto es demasiado grande");
-        } else if (info.error.includes("Database error: Database was shut down")) {
-          setCreateCard("Error con el servidor");
-        } else {
-          setCreateCard("Ha ocurrido un error");
-        }
-        setUrl('');
-        setInfo('');
-      } else if (info.success) {
-        setUrl(info.cardUrl);
-        setInfo(info);
-        data.push(data);
+    console.log(handleClickCreateCard);
+
+    callToApi(data).then((response) => {
+      if(response.success) {
+        setUrl(response.cardURL);
+      } else {
+        setUrl('No se ha podido crear tu tarjeta');
       }
     });
 
@@ -244,7 +241,7 @@ function App() {
           </section>
 
           <section className="card">
-            <span className=""> La tarjeta ha sido creada: </span>
+            <span className=""> La tarjeta ha sido creada: {url}</span>
             <a href='./#' className="" target="_blank" rel="noreferrer"> </a>
           </section>
         </section>

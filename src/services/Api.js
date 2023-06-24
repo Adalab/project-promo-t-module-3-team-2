@@ -10,8 +10,8 @@ const callToApi = (data) => {
 
   })
     .then((response) => response.json())
-    .then((data) => {
-      return data;
+    .then((result) => {
+      return result;
     })
 }
 
