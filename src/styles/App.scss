@@ -58,7 +58,7 @@
 }
 
 .main .form {
-  background-color: #302c42;
+  background-color:#302c42;
   width: 40%;
 }
 
@@ -132,7 +132,7 @@
   display: flex;
   flex-direction: row-reverse;
   gap: 40px;
-  padding: 30px;
+  padding: 20px;
   overflow-y: scroll;
 }
 
@@ -228,4 +228,46 @@
   color: rgb(188, 64, 237);
   font-size: 10px;
   margin-left: 20px;
+}
+
+
+@media (max-width: 375px) {
+.container {
+  padding: 0;
+}
+.main {
+    flex-direction: column;
+    height: auto;
+  }
+.main .preview {
+  width: 100%;
+  height: 500px;
+}
+.main .form {
+  width: 90%;
+  margin: auto;
+  padding: 20px;
+}
+
+.main .preview .image {
+  height: auto;
+}
+.main .preview .autor {
+  margin-top: 65px;
+}
+.technologies {
+  width: 100%;
+}
+
+
+ #repo,
+ #demo {
+   width: 120px;
+  display: inline;
+ }
+
+ #desc {
+   width: 100%;
+   height: 100px;
+ }
 }
