@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import callToApi from '../services/Api.js';
 import '../styles/App.scss';
 import cover2 from '../images/cover_2.jpeg';
@@ -20,7 +20,8 @@ function App() {
       desc: '', 
       autor: '', 
       job: '', 
-      image: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg', photo: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg'}); 
+      image: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg', 
+      photo: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg'}); 
   
   const [url, setUrl] = useState('');
 
@@ -40,6 +41,9 @@ function App() {
   const [autorError, setAutorError] = useState(false);
 
   const [jobError, setJobError] = useState(false);
+
+  const [previewUrl, setPreviewUrl] = useState('');
+
 
   
   const handleInput = (ev) => {
@@ -81,6 +85,10 @@ function App() {
       data.job = ev.target.value;
       setJobError(ev.target.value === '');
     }
+    if (ev.target.id === 'image, photo') {
+    data.image = ev.target.value;
+    setPreviewUrl(ev.target.value);
+  }
     setData({ ...data });
   }
 
@@ -90,18 +98,20 @@ function App() {
 
     console.log(handleClickCreateCard);
 
-    callToApi(data).then((response) => {
-      if(response.success) {
-        setUrl(response.cardURL);
-      } else {
-        setUrl('No se ha podido crear tu tarjeta');
-      }
-    });
+    callToApi(data)
+      .then((response) => {
+        if (response.success) {
+          setUrl(response.cardURL);
+          setPreviewUrl(response.cardURL);
+        } else {
+          setUrl('No se ha podido crear tu tarjeta');
+        }
+      });
 
     if (createCard === '') {
-      setCreateCard('')
+      setCreateCard('');
     }
-  }
+  };
 
   return (
 
@@ -241,10 +251,10 @@ function App() {
           </section>
 
           <section className="card">
-            <span className=""> La tarjeta ha sido creada: {url}</span>
-            <a href='./#' className="" target="_blank" rel="noreferrer"> </a>
-          </section>
-        </section>
+  <span>La tarjeta ha sido creada: {previewUrl}</span>
+  <a href={previewUrl} target="_blank" rel="noreferrer"> Ver tarjeta de previsualización</a>
+</section>
+</section>
       </main>
     </div>
 
