@@ -99,17 +99,24 @@ function App() {
     console.log(handleClickCreateCard);
 
     callToApi(data)
-      .then((response) => {
-        if (response.success) {
-          setUrl(response.cardURL);
-          setPreviewUrl(response.cardURL);
+      .then((data) => {
+        if (data.success) {
+          setUrl(renderSucces(data));
+          console.log(data.cardURL);
         } else {
-          setUrl('No se ha podido crear tu tarjeta');
+          setUrl(renderError(data));
         }
       });
 
     if (createCard === '') {
       setCreateCard('');
+    }
+
+    const renderSucces = (data) => {
+      <><span>La tarjeta ha sido creada:</span><a href={data.cardURL} className="succesMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
+    }
+    const renderError = (data) => {
+      <><span>No se ha podido crear tu tarjeta</span><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
     }
   };
 
@@ -251,8 +258,8 @@ function App() {
           </section>
 
           <section className="card">
-  <span>La tarjeta ha sido creada: {previewUrl}</span>
-  <a href={previewUrl} target="_blank" rel="noreferrer"> Ver tarjeta de previsualización</a>
+  <span>La tarjeta ha sido creada:</span>
+  <a href={data.cardURL} className="" target="_blank" rel="noreferrer"> {data.cardURL} </a>
 </section>
 </section>
       </main>
@@ -262,5 +269,3 @@ function App() {
 }
 
 export default App;
-
-holagholawueyfhksej
