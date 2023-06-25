@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import callToApi from '../services/Api.js';
 import '../styles/App.scss';
 import cover2 from '../images/cover_2.jpeg';
@@ -6,10 +6,24 @@ import cover from '../images/cover.jpeg';
 import logo from '../images/logo-adalab.png';
 import user from '../images/user.jpeg';
 
-function App() {
-  const [createCard, setCreateCard] = useState('');
-  const [data, setData] = useState({ projectName: '', slogan: '', repo: '', demo: '', tech: '', desc: '', autor: '', job: '' });
 
+function App() {
+  
+  const [createCard, setCreateCard] = useState('');
+  const [data, setData] = useState(
+    { 
+      projectName: '', 
+      slogan: '', 
+      repo: '', 
+      demo: '', 
+      tech: '', 
+      desc: '', 
+      autor: '', 
+      job: '', 
+      image: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg', 
+      photo: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg'}); 
+  
+  const [url, setUrl] = useState('');
 
 
   const [projectNameError, setProjectNameError] = useState(false);
@@ -30,7 +44,7 @@ function App() {
 
 
 
-
+  
   const handleInput = (ev) => {
     if (ev.target.id === 'name') {
       data.projectName = ev.target.value;
@@ -69,22 +83,37 @@ function App() {
     if (ev.target.id === 'job') {
       data.job = ev.target.value;
       setJobError(ev.target.value === '');
-    }
-    setData({ ...data });
   }
-
+setData({ ...data });
+};
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
 
+    console.log(handleClickCreateCard);
 
     if (createCard === '') {
-      setCreateCard('')
-    }
-  }
+      setCreateCard('');
+    };
 
-  return (
+    const renderSucces = (data) => {
+      return<><span>La tarjeta ha sido creada:</span><a href={data.cardURL} className="succesMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
+    };
+    const renderError = (data) => {
+      return<><span>No se ha podido crear tu tarjeta</span><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
+    };
+  
+    callToApi(data)
+      .then((data) => {
+        if (data.success) {
+          setUrl(renderSucces(data));
+        } else {
+          setUrl(renderError(data));
+        }
+      });
+    };
 
+return (
     <div className="container">
       <header className="header">
         <p className="text">Proyectos Molones</p>
@@ -221,15 +250,14 @@ function App() {
           </section>
 
           <section className="card">
-            <span className=""> La tarjeta ha sido creada: </span>
-            <a href='./#' className="" target="_blank" rel="noreferrer"> </a>
-          </section>
-        </section>
+  <span>La tarjeta ha sido creada:{data.cardURL} </span>
+  <a href= './#' className="" target="_blank" rel="noreferrer"></a>
+</section>
+</section>
       </main>
     </div>
 
-  );
+);
 }
 
 export default App;
-
