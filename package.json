@@ -1,6 +1,6 @@
 {
   "name": "react-starter-kit",
-  "homepage": "./",
+  "homepage": "https://Adalab.github.io/project-promo-t-module-3-team-2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,12 +14,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build", 
     "start": "react-scripts start",
     "build": "react-scripts build",
     "githubpages": "rm -rf build && rm -rf docs && npm run build && mv build docs && git add docs/* && git commit -m \"Publish in GitHub Pages\" && git push",
     "test": "react-scripts test",
-    "eject": "react-scripts eject" 
-    },
+    "eject": "react-scripts eject"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -37,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
