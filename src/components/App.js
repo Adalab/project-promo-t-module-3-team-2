@@ -42,7 +42,6 @@ function App() {
 
   const [jobError, setJobError] = useState(false);
 
-  const [previewUrl, setPreviewUrl] = useState('');
 
 
   
@@ -84,44 +83,37 @@ function App() {
     if (ev.target.id === 'job') {
       data.job = ev.target.value;
       setJobError(ev.target.value === '');
-    }
-    if (ev.target.id === 'image, photo') {
-    data.image = ev.target.value;
-    setPreviewUrl(ev.target.value);
   }
-    setData({ ...data });
-  }
-
+setData({ ...data });
+};
 
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
 
     console.log(handleClickCreateCard);
 
+    if (createCard === '') {
+      setCreateCard('');
+    };
+
+    const renderSucces = (data) => {
+      return<><span>La tarjeta ha sido creada:</span><a href={data.cardURL} className="succesMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
+    };
+    const renderError = (data) => {
+      return<><span>No se ha podido crear tu tarjeta</span><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
+    };
+  
     callToApi(data)
       .then((data) => {
         if (data.success) {
           setUrl(renderSucces(data));
-          console.log(data.cardURL);
         } else {
           setUrl(renderError(data));
         }
       });
+    };
 
-    if (createCard === '') {
-      setCreateCard('');
-    }
-
-    const renderSucces = (data) => {
-      <><span>La tarjeta ha sido creada:</span><a href={data.cardURL} className="succesMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
-    }
-    const renderError = (data) => {
-      <><span>No se ha podido crear tu tarjeta</span><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
-    }
-  };
-
-  return (
-
+return (
     <div className="container">
       <header className="header">
         <p className="text">Proyectos Molones</p>
@@ -258,14 +250,14 @@ function App() {
           </section>
 
           <section className="card">
-  <span>La tarjeta ha sido creada:</span>
-  <a href={data.cardURL} className="" target="_blank" rel="noreferrer"> {data.cardURL} </a>
+  <span>La tarjeta ha sido creada:{data.cardURL} </span>
+  <a href= './#' className="" target="_blank" rel="noreferrer"></a>
 </section>
 </section>
       </main>
     </div>
 
-  );
+);
 }
 
 export default App;
