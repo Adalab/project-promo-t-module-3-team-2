@@ -1,30 +1,29 @@
-import { useState} from 'react';
-import callToApi from '../services/Api.js';
-import '../styles/App.scss';
-import cover2 from '../images/cover_2.jpeg';
-import cover from '../images/cover.jpeg';
-import logo from '../images/logo-adalab.png';
-import user from '../images/user.jpeg';
-
+import { useState } from "react";
+import callToApi from "../services/Api.js";
+import "../styles/App.scss";
+import cover2 from "../images/cover_2.jpeg";
+import cover from "../images/cover.jpeg";
+import logo from "../images/logo-adalab.png";
+import user from "../images/user.jpeg";
 
 function App() {
-  
-  const [createCard, setCreateCard] = useState('');
-  const [data, setData] = useState(
-    { 
-      projectName: '', 
-      slogan: '', 
-      repo: '', 
-      demo: '', 
-      tech: '', 
-      desc: '', 
-      autor: '', 
-      job: '', 
-      image: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg', 
-      photo: 'https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg'}); 
-  
-  const [url, setUrl] = useState('');
+  const [createCard, setCreateCard] = useState("");
+  const [data, setData] = useState({
+    name: "",
+    slogan: "",
+    repo: "",
+    demo: "",
+    technologies: "",
+    desc: "",
+    autor: "",
+    job: "",
+    image:
+      "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
+    photo:
+      "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
+  });
 
+  const [url, setUrl] = useState("");
 
   const [projectNameError, setProjectNameError] = useState(false);
 
@@ -42,51 +41,46 @@ function App() {
 
   const [jobError, setJobError] = useState(false);
 
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
-
-  
   const handleInput = (ev) => {
-    if (ev.target.id === 'name') {
-      data.projectName = ev.target.value;
-      setProjectNameError(ev.target.value === '');
-
+    if (ev.target.id === "name") {
+      data.name = ev.target.value;
+      setProjectNameError(ev.target.value === "");
     }
-    if (ev.target.id === 'slogan') {
+    if (ev.target.id === "slogan") {
       data.slogan = ev.target.value;
-      setSloganError(ev.target.value === '');
-
+      setSloganError(ev.target.value === "");
     }
-    if (ev.target.id === 'repo') {
+    if (ev.target.id === "repo") {
       data.repo = ev.target.value;
-      setRepoError(ev.target.value === '');
-
+      setRepoError(ev.target.value === "");
     }
-    if (ev.target.id === 'demo') {
+    if (ev.target.id === "demo") {
       data.demo = ev.target.value;
-      setDemoError(ev.target.value === '');
-
+      setDemoError(ev.target.value === "");
     }
-    if (ev.target.id === 'technologies') {
-      data.tech = ev.target.value;
-      setTechError(ev.target.value === '');
-
+    if (ev.target.id === "technologies") {
+      data.technologies = ev.target.value;
+      setTechError(ev.target.value === "");
     }
-    if (ev.target.id === 'desc') {
+    if (ev.target.id === "desc") {
       data.desc = ev.target.value;
-      setDescError(ev.target.value === '');
-
+      setDescError(ev.target.value === "");
     }
-    if (ev.target.id === 'autor') {
+    if (ev.target.id === "autor") {
       data.autor = ev.target.value;
-      setAutorError(ev.target.value === '');
+      setAutorError(ev.target.value === "");
     }
-    if (ev.target.id === 'job') {
+    if (ev.target.id === "job") {
       data.job = ev.target.value;
-      setJobError(ev.target.value === '');
-  }
-setData({ ...data });
-};
+      setJobError(ev.target.value === "");
+    }
+    setData({ ...data });
+  };
 
+  /*
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
 
@@ -100,7 +94,7 @@ setData({ ...data });
       return<><span>La tarjeta ha sido creada:</span><a href={data.cardURL} className="succesMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
     };
     const renderError = (data) => {
-      return<><span>No se ha podido crear tu tarjeta</span><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
+      return<><p>Error al crear la tarjeta</p><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
     };
   
     callToApi(data)
@@ -112,8 +106,29 @@ setData({ ...data });
         }
       });
     };
+*/
 
-return (
+  const handleClickCreateCard = (ev) => {
+    ev.preventDefault();
+
+    if (createCard === "") {
+      setCreateCard("");
+    }
+
+    callToApi(data).then((data) => {
+      if (data.success) {
+        setSuccessMessage(true);
+        setErrorMessage(false);
+        setUrl(data.cardURL);
+      } else {
+        setSuccessMessage(false);
+        setErrorMessage(true);
+        setUrl(data.cardURL);
+      }
+    });
+  };
+
+  return (
     <div className="container">
       <header className="header">
         <p className="text">Proyectos Molones</p>
@@ -124,24 +139,24 @@ return (
 
           <section className="autor">
             <section className="info-project">
-              <p className="subtitle">{data.repo || 'Repo'}</p>
+              <p className="subtitle">{data.repo || "Repo"}</p>
               <hr className="line" />
 
-              <h2 className="title">{data.projectName || 'Nombre del proyecto'}</h2>
-              <p className="slogan">{data.slogan || 'Slogan'}</p>
-              <p className="desc">
-                {data.desc}
-              </p>
+              <h2 className="title">
+                {data.projectName || "Nombre del proyecto"}
+              </h2>
+              <p className="slogan">{data.slogan || "Slogan"}</p>
+              <p className="desc">{data.desc}</p>
               <section className="technologies">
-                <p className="text">{data.tech || 'Tecnologias'}</p>
-                <p className="text">{data.demo || 'Demo'}</p>
+                <p className="text">{data.technologies || "Tecnologias"}</p>
+                <p className="text">{data.demo || "Demo"}</p>
               </section>
             </section>
 
             <section className="info-autor">
               <img className="image" src={user} alt="" />
-              <p className="job">{data.job || 'Trabajo'}</p>
-              <p className="name">{data.autor || 'Nombre'}</p>
+              <p className="job">{data.job || "Trabajo"}</p>
+              <p className="name">{data.autor || "Nombre"}</p>
             </section>
           </section>
         </section>
@@ -156,17 +171,19 @@ return (
 
           <fieldset className="project">
             <input
-              className={`input ${projectNameError ? 'error' : ''}`}
+              className={`input ${projectNameError ? "error" : ""}`}
               type="text"
               placeholder="Nombre del proyecto"
               name="name"
               id="name"
-              value={data.projectName}
+              value={data.name}
               onInput={handleInput}
             />
-            {projectNameError && <p className="error-message">* Este campo es obligatorio</p>}
+            {projectNameError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
             <input
-              className={`input ${sloganError ? 'error' : ''}`}
+              className={`input ${sloganError ? "error" : ""}`}
               type="text"
               name="slogan"
               id="slogan"
@@ -174,43 +191,53 @@ return (
               value={data.slogan}
               onInput={handleInput}
             />
-            {sloganError && <p className="error-message">* Este campo es obligatorio</p>}
+            {sloganError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
             <input
-              className={`input ${repoError ? 'error' : ''}`}
+              className={`input ${repoError ? "error" : ""}`}
               type="text"
               name="repo"
               id="repo"
               placeholder="Repo"
               onInput={handleInput}
             />
-            {repoError && <p className="error-message">* Este campo es obligatorio</p>}
+            {repoError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
             <input
-              className={`input ${demoError ? 'error' : ''}`}
+              className={`input ${demoError ? "error" : ""}`}
               type="text"
               placeholder="Demo"
               name="demo"
               id="demo"
               onInput={handleInput}
             />
-            {demoError && <p className="error-message">* Este campo es obligatorio</p>}
+            {demoError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
             <input
-              className={`input ${techError ? 'error' : ''}`}
+              className={`input ${techError ? "error" : ""}`}
               type="text"
               placeholder="Tecnologías"
               name="technologies"
               id="technologies"
               onInput={handleInput}
             />
-            {techError && <p className="error-message">* Este campo es obligatorio</p>}
+            {techError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
             <textarea
-              className={`input ${descError ? 'error' : ''}`}
+              className={`input ${descError ? "error" : ""}`}
               type="text"
               placeholder="Descripción"
               name="desc"
               id="desc"
               onInput={handleInput}
             ></textarea>
-            {descError && <p className="error-message">* Este campo es obligatorio</p>}
+            {descError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
           </fieldset>
 
           <section className="ask-info">
@@ -220,23 +247,27 @@ return (
 
           <fieldset className="autor">
             <input
-              className={`input ${autorError ? 'error' : ''}`}
+              className={`input ${autorError ? "error" : ""}`}
               type="text"
               placeholder="Nombre"
               name="autor"
               id="autor"
               onInput={handleInput}
             />
-            {autorError && <p className="error-message">* Este campo es obligatorio</p>}
+            {autorError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
             <input
-              className={`input ${jobError ? 'error' : ''}`}
+              className={`input ${jobError ? "error" : ""}`}
               type="text"
               placeholder="Trabajo"
               name="job"
               id="job"
               onInput={handleInput}
             />
-            {jobError && <p className="error-message">* Este campo es obligatorio</p>}
+            {jobError && (
+              <p className="error-message">* Este campo es obligatorio</p>
+            )}
           </fieldset>
 
           <section className="buttons-img">
@@ -250,14 +281,37 @@ return (
           </section>
 
           <section className="card">
-  <span>La tarjeta ha sido creada:{data.cardURL} </span>
-  <a href= './#' className="" target="_blank" rel="noreferrer"></a>
-</section>
-</section>
+            {successMessage && (
+              <>
+                <span className="successMsg">La tarjeta ha sido creada: </span>
+                <a
+                  href={url}
+                  className="successMsg"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {url}
+                </a>
+              </>
+            )}
+            {errorMessage && (
+              <>
+                <p className="errorMsg">Error al crear la tarjeta</p>
+                <a
+                  href={url}
+                  className="errorMsg"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {url}
+                </a>
+              </>
+            )}
+          </section>
+        </section>
       </main>
     </div>
-
-);
+  );
 }
 
 export default App;
