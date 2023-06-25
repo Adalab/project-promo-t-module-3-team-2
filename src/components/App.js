@@ -42,6 +42,8 @@ function App() {
 
   const [jobError, setJobError] = useState(false);
 
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
 
   
@@ -87,6 +89,7 @@ function App() {
 setData({ ...data });
 };
 
+/*
   const handleClickCreateCard = (ev) => {
     ev.preventDefault();
 
@@ -100,7 +103,7 @@ setData({ ...data });
       return<><span>La tarjeta ha sido creada:</span><a href={data.cardURL} className="succesMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
     };
     const renderError = (data) => {
-      return<><span>No se ha podido crear tu tarjeta</span><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
+      return<><p>Error al crear la tarjeta</p><a href={data.cardURL} className="errorMsg" target="_blank" rel="noreferrer"> {data.cardURL} </a></>
     };
   
     callToApi(data)
@@ -112,6 +115,28 @@ setData({ ...data });
         }
       });
     };
+*/
+
+const handleClickCreateCard = (ev) => {
+  ev.preventDefault();
+
+  if (createCard === '') {
+    setCreateCard('');
+  };
+
+  callToApi(data)
+    .then((data) => {
+      if (data.success) {
+        setSuccessMessage(true);
+        setErrorMessage(false);
+        setUrl(data.cardURL);
+      } else {
+        setSuccessMessage(false);
+        setErrorMessage(true);
+        setUrl(data.cardURL);
+      }
+    });
+};
 
 return (
     <div className="container">
@@ -250,9 +275,20 @@ return (
           </section>
 
           <section className="card">
-  <span>La tarjeta ha sido creada:{data.cardURL} </span>
-  <a href= './#' className="" target="_blank" rel="noreferrer"></a>
+  {successMessage && (
+    <>
+      <span className="successMsg">La tarjeta ha sido creada: </span>
+      <a href={url} className="successMsg" target="_blank" rel="noreferrer">{url}</a>
+    </>
+  )}
+  {errorMessage && (
+    <>
+      <p className="errorMsg">Error al crear la tarjeta</p>
+      <a href={url} className="errorMsg" target="_blank" rel="noreferrer">{url}</a>
+    </>
+  )}
 </section>
+
 </section>
       </main>
     </div>
