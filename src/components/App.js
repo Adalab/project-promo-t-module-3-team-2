@@ -25,6 +25,17 @@ function App() {
 
   const [url, setUrl] = useState("");
 
+  const [errors, setErrors] = useState({
+    name: false,
+    slogan: false,
+    repo: false,
+    demo: false,
+    technologies: false,
+    desc: false,
+    autor: false,
+    job: false,
+  });
+  /*
   const [projectNameError, setProjectNameError] = useState(false);
 
   const [sloganError, setSloganError] = useState(false);
@@ -40,42 +51,50 @@ function App() {
   const [autorError, setAutorError] = useState(false);
 
   const [jobError, setJobError] = useState(false);
-
+*/
   const [successMessage, setSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
 
   const handleInput = (ev) => {
     if (ev.target.id === "name") {
       data.name = ev.target.value;
-      setProjectNameError(ev.target.value === "");
+      //setProjectNameError(ev.target.value === "");
+      setErrors({ ...errors, name: ev.target.value === "" });
     }
     if (ev.target.id === "slogan") {
       data.slogan = ev.target.value;
-      setSloganError(ev.target.value === "");
+      //setSloganError(ev.target.value === "");
+      setErrors({ ...errors, slogan: ev.target.value === "" });
     }
     if (ev.target.id === "repo") {
       data.repo = ev.target.value;
-      setRepoError(ev.target.value === "");
+      //setRepoError(ev.target.value === "");
+      setErrors({ ...errors, repo: ev.target.value === "" });
     }
     if (ev.target.id === "demo") {
       data.demo = ev.target.value;
-      setDemoError(ev.target.value === "");
+      // setDemoError(ev.target.value === "");
+      setErrors({ ...errors, demo: ev.target.value === "" });
     }
     if (ev.target.id === "technologies") {
       data.technologies = ev.target.value;
-      setTechError(ev.target.value === "");
+      // setTechError(ev.target.value === "");
+      setErrors({ ...errors, technologies: ev.target.value === "" });
     }
     if (ev.target.id === "desc") {
       data.desc = ev.target.value;
-      setDescError(ev.target.value === "");
+      // setDescError(ev.target.value === "");
+      setErrors({ ...errors, desc: ev.target.value === "" });
     }
     if (ev.target.id === "autor") {
       data.autor = ev.target.value;
-      setAutorError(ev.target.value === "");
+      // setAutorError(ev.target.value === "");
+      setErrors({ ...errors, autor: ev.target.value === "" });
     }
     if (ev.target.id === "job") {
       data.job = ev.target.value;
-      setJobError(ev.target.value === "");
+      // setJobError(ev.target.value === "");
+      setErrors({ ...errors, job: ev.target.value === "" });
     }
     setData({ ...data });
   };
@@ -142,9 +161,7 @@ function App() {
               <p className="subtitle">{data.repo || "Repo"}</p>
               <hr className="line" />
 
-              <h2 className="title">
-                {data.projectName || "Nombre del proyecto"}
-              </h2>
+              <h2 className="title">{data.name || "Nombre del proyecto"}</h2>
               <p className="slogan">{data.slogan || "Slogan"}</p>
               <p className="desc">{data.desc}</p>
               <section className="technologies">
@@ -171,7 +188,7 @@ function App() {
 
           <fieldset className="project">
             <input
-              className={`input ${projectNameError ? "error" : ""}`}
+              className={`input ${errors.name ? "error" : ""}`}
               type="text"
               placeholder="Nombre del proyecto"
               name="name"
@@ -179,11 +196,11 @@ function App() {
               value={data.name}
               onInput={handleInput}
             />
-            {projectNameError && (
+            {errors.name && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
             <input
-              className={`input ${sloganError ? "error" : ""}`}
+              className={`input ${errors.slogan ? "error" : ""}`}
               type="text"
               name="slogan"
               id="slogan"
@@ -191,51 +208,51 @@ function App() {
               value={data.slogan}
               onInput={handleInput}
             />
-            {sloganError && (
+            {errors.slogan && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
             <input
-              className={`input ${repoError ? "error" : ""}`}
+              className={`input ${errors.repo ? "error" : ""}`}
               type="text"
               name="repo"
               id="repo"
               placeholder="Repo"
               onInput={handleInput}
             />
-            {repoError && (
+            {errors.repo && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
             <input
-              className={`input ${demoError ? "error" : ""}`}
+              className={`input ${errors.demo ? "error" : ""}`}
               type="text"
               placeholder="Demo"
               name="demo"
               id="demo"
               onInput={handleInput}
             />
-            {demoError && (
+            {errors.demo && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
             <input
-              className={`input ${techError ? "error" : ""}`}
+              className={`input ${errors.technologies ? "error" : ""}`}
               type="text"
               placeholder="Tecnologías"
               name="technologies"
               id="technologies"
               onInput={handleInput}
             />
-            {techError && (
+            {errors.technologies && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
             <textarea
-              className={`input ${descError ? "error" : ""}`}
+              className={`input ${errors.desc ? "error" : ""}`}
               type="text"
               placeholder="Descripción"
               name="desc"
               id="desc"
               onInput={handleInput}
             ></textarea>
-            {descError && (
+            {errors.desc && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
           </fieldset>
@@ -247,25 +264,25 @@ function App() {
 
           <fieldset className="autor">
             <input
-              className={`input ${autorError ? "error" : ""}`}
+              className={`input ${errors.autor ? "error" : ""}`}
               type="text"
               placeholder="Nombre"
               name="autor"
               id="autor"
               onInput={handleInput}
             />
-            {autorError && (
+            {errors.autor && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
             <input
-              className={`input ${jobError ? "error" : ""}`}
+              className={`input ${errors.job ? "error" : ""}`}
               type="text"
               placeholder="Trabajo"
               name="job"
               id="job"
               onInput={handleInput}
             />
-            {jobError && (
+            {errors.job && (
               <p className="error-message">* Este campo es obligatorio</p>
             )}
           </fieldset>
