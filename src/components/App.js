@@ -6,6 +6,11 @@ import cover from "../images/cover.jpeg";
 import logo from "../images/logo-adalab.png";
 import user from "../images/user.jpeg";
 
+import Footer from '../components/Footer/Footer.js';
+import Form from '../components/Form/Form.js';
+import Header from '../components/Header/Header.js';
+import Preview from '../component/Preview/Preview.js';
+
 function App() {
   const [createCard, setCreateCard] = useState("");
   const [data, setData] = useState({
@@ -149,183 +154,10 @@ function App() {
 
   return (
     <div className="container">
-      <header className="header">
-        <p className="text">Proyectos Molones</p>
-      </header>
+      <Header />
       <main className="main">
-        <section className="preview">
-          <img className="image" src={cover} alt="" />
-
-          <section className="autor">
-            <section className="info-project">
-              <p className="subtitle">{data.repo || "Repo"}</p>
-              <hr className="line" />
-
-              <h2 className="title">{data.name || "Nombre del proyecto"}</h2>
-              <p className="slogan">{data.slogan || "Slogan"}</p>
-              <p className="desc">{data.desc}</p>
-              <section className="technologies">
-                <p className="text">{data.technologies || "Tecnologias"}</p>
-                <p className="text">{data.demo || "Demo"}</p>
-              </section>
-            </section>
-
-            <section className="info-autor">
-              <img className="image" src={user} alt="" />
-              <p className="job">{data.job || "Trabajo"}</p>
-              <p className="name">{data.autor || "Nombre"}</p>
-            </section>
-          </section>
-        </section>
-
-        <section className="form">
-          <h2 className="title">Información</h2>
-
-          <section className="ask-info">
-            <p className="subtitle">Cuéntanos sobre el proyecto</p>
-            <hr className="line" />
-          </section>
-
-          <fieldset className="project">
-            <input
-              className={`input ${errors.name ? "error" : ""}`}
-              type="text"
-              placeholder="Nombre del proyecto"
-              name="name"
-              id="name"
-              value={data.name}
-              onInput={handleInput}
-            />
-            {errors.name && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-            <input
-              className={`input ${errors.slogan ? "error" : ""}`}
-              type="text"
-              name="slogan"
-              id="slogan"
-              placeholder="Slogan"
-              value={data.slogan}
-              onInput={handleInput}
-            />
-            {errors.slogan && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-            <input
-              className={`input ${errors.repo ? "error" : ""}`}
-              type="text"
-              name="repo"
-              id="repo"
-              placeholder="Repo"
-              onInput={handleInput}
-            />
-            {errors.repo && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-            <input
-              className={`input ${errors.demo ? "error" : ""}`}
-              type="text"
-              placeholder="Demo"
-              name="demo"
-              id="demo"
-              onInput={handleInput}
-            />
-            {errors.demo && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-            <input
-              className={`input ${errors.technologies ? "error" : ""}`}
-              type="text"
-              placeholder="Tecnologías"
-              name="technologies"
-              id="technologies"
-              onInput={handleInput}
-            />
-            {errors.technologies && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-            <textarea
-              className={`input ${errors.desc ? "error" : ""}`}
-              type="text"
-              placeholder="Descripción"
-              name="desc"
-              id="desc"
-              onInput={handleInput}
-            ></textarea>
-            {errors.desc && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-          </fieldset>
-
-          <section className="ask-info">
-            <p className="subtitle">Cuéntanos sobre la autora</p>
-            <hr className="line" />
-          </section>
-
-          <fieldset className="autor">
-            <input
-              className={`input ${errors.autor ? "error" : ""}`}
-              type="text"
-              placeholder="Nombre"
-              name="autor"
-              id="autor"
-              onInput={handleInput}
-            />
-            {errors.autor && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-            <input
-              className={`input ${errors.job ? "error" : ""}`}
-              type="text"
-              placeholder="Trabajo"
-              name="job"
-              id="job"
-              onInput={handleInput}
-            />
-            {errors.job && (
-              <p className="error-message">* Este campo es obligatorio</p>
-            )}
-          </fieldset>
-
-          <section className="buttons-img">
-            <button className="btn">Subir foto de proyecto</button>
-            <button className="btn">Subir foto de autora</button>
-          </section>
-          <section className="buttons-img">
-            <button className="btn-large" onClick={handleClickCreateCard}>
-              Crear Tarjeta
-            </button>
-          </section>
-
-          <section className="card">
-            {successMessage && (
-              <>
-                <span className="successMsg">La tarjeta ha sido creada: </span>
-                <a
-                  href={url}
-                  className="successMsg"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {url}
-                </a>
-              </>
-            )}
-            {errorMessage && (
-              <>
-                <p className="errorMsg">Error al crear la tarjeta</p>
-                <a
-                  href={url}
-                  className="errorMsg"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {url}
-                </a>
-              </>
-            )}
-          </section>
-        </section>
+        <Preview />
+        <Form />
       </main>
     </div>
   );
