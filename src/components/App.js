@@ -11,6 +11,7 @@ import Form from '../components/Form/Form.js';
 import Header from '../components/Header/Header.js';
 import Preview from './Preview/Preview.js';
 import ls from '../services/localStorage.js';
+import GetAvatar from "./GetAvatar/GetAvatar.js";
 
 function App() {
   const [createCard, setCreateCard] = useState("");
@@ -41,6 +42,13 @@ function App() {
     autor: false,
     job: false,
   });
+
+  const handleChangeForm = (parame1, value) =>{
+    const clonedData = {...data,[parame1]:value};
+    setData( clonedData);
+
+
+  }
   /*
   const [projectNameError, setProjectNameError] = useState(false);
 
