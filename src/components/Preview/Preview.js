@@ -5,7 +5,7 @@ const Preview = ({data}) => {
 
     return (
         <section className="preview">
-            <img className="image" src={cover} alt="" />
+            <img className="image" src={data.image || cover} alt="" />
 
             <section className="autor">
                 <section className="info-project">
@@ -22,7 +22,7 @@ const Preview = ({data}) => {
                 </section>
 
                 <section className="info-autor">
-                    <img className="image" src={user} alt="" />
+                    <img className="image" src={data.photo || user} alt="" />
                     <p className="job">{data.job || "Trabajo"}</p>
                     <p className="name">{data.autor || "Nombre"}</p>
                 </section>

@@ -24,10 +24,8 @@ function App() {
     desc: "",
     autor: "",
     job: "",
-    image:
-      "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
-    photo:
-      "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
+    image: "",
+    photo: "",
   });
 
   const [url, setUrl] = useState("");
@@ -68,6 +66,7 @@ function App() {
 */
   const [successMessage, setSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+
 
   const handleInput = (ev) => {
     if (ev.target.id === "name") {
@@ -166,7 +165,7 @@ function App() {
       <Header />
       <main className="main">
         <Preview data={data} />
-        <Form data={data} errors={errors} handleInput={handleInput} url={url} successMessage={successMessage} handleClickCreateCard={handleClickCreateCard} errorMessage={errorMessage}/>
+        <Form data={data} errors={errors} handleInput={handleInput}url={url} successMessage={successMessage} handleClickCreateCard={handleClickCreateCard} errorMessage={errorMessage} handleChangeForm = {handleChangeForm}/>
       </main>
     </div>
   );

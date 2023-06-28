@@ -128,8 +128,6 @@ const Form = ({data, errors, handleInput, url, successMessage, handleClickCreate
             </fieldset>
 
             <section className="buttons-img">
-                <button className="btn">Subir foto de proyecto</button>
-                <button className="btn">Subir foto de autora</button>
 
                 <GetAvatar 
                 text = "Subir foto de proyecto"

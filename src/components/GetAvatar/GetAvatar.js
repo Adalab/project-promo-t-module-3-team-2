@@ -59,7 +59,7 @@ function GetAvatar({avatar=defaultAvatar, updateAvatar, text='Get avatar!'}) {
   };
 
   return (
-    <div className="get-avatar">
+   
       <label className="get-avatar__label">
         {text}
         <input
@@ -71,7 +71,7 @@ function GetAvatar({avatar=defaultAvatar, updateAvatar, text='Get avatar!'}) {
       </label>
 
       
-    </div>
+  
   );
 }
 
