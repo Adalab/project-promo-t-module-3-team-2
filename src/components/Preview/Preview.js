@@ -1,4 +1,7 @@
-const Preview = () => {
+import cover from "../../images/cover.jpeg";
+import user from "../../images/user.jpeg";
+
+const Preview = ({data}) => {
 
     return (
         <section className="preview">

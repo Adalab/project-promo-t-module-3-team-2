@@ -1,4 +1,4 @@
-const Form = (props) => {
+const Form = ({data, errors, handleInput, url, successMessage, handleClickCreateCard, errorMessage}) => {
 
     return (
         <section className="form">

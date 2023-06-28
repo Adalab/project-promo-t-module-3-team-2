@@ -2,14 +2,15 @@ import { useState } from "react";
 import callToApi from "../services/Api.js";
 import "../styles/App.scss";
 import cover2 from "../images/cover_2.jpeg";
-import cover from "../images/cover.jpeg";
+
 import logo from "../images/logo-adalab.png";
-import user from "../images/user.jpeg";
+
 
 import Footer from '../components/Footer/Footer.js';
 import Form from '../components/Form/Form.js';
 import Header from '../components/Header/Header.js';
-import Preview from '../component/Preview/Preview.js';
+import Preview from './Preview/Preview.js';
+import ls from '../services/localStorage.js';
 
 function App() {
   const [createCard, setCreateCard] = useState("");
@@ -156,8 +157,8 @@ function App() {
     <div className="container">
       <Header />
       <main className="main">
-        <Preview />
-        <Form />
+        <Preview data={data} />
+        <Form data={data} errors={errors} handleInput={handleInput} url={url} successMessage={successMessage} handleClickCreateCard={handleClickCreateCard} errorMessage={errorMessage}/>
       </main>
     </div>
   );
