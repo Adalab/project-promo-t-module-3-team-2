@@ -28,6 +28,9 @@ function App() {
       "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
   });
 
+
+
+
   const [url, setUrl] = useState("");
 
   const [errors, setErrors] = useState({
@@ -40,6 +43,11 @@ function App() {
     autor: false,
     job: false,
   });
+
+  const handleChangeForm = (parame1, value) =>{
+    const clonedData = {...data,[parame1]:value};
+    setData( clonedData);
+ }
   /*
   const [projectNameError, setProjectNameError] = useState(false);
 
@@ -59,6 +67,10 @@ function App() {
 */
   const [successMessage, setSuccessMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
+
+
+
+
 
   const handleInput = (ev) => {
     if (ev.target.id === "name") {
@@ -157,10 +169,12 @@ function App() {
       <Header />
       <main className="main">
         <Preview />
-        <Form />
+        <Form 
+        handleChangeForm = {handleChangeForm} />
       </main>
     </div>
   );
 }
 
 export default App;
+ 

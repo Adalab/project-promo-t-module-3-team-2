@@ -1,4 +1,18 @@
-const Form = (props) => {
+import GetAvatar from "../Get Avatar/GetAvatar";
+
+const Form = (props,handleChangeForm) => {
+    
+    
+    const handleImage = (fileImage) => {
+        handleChangeForm('image', fileImage)
+    }
+
+    const handlePhoto = (filePhoto) => {
+        handleChangeForm('photo', filePhoto)
+    }
+  
+
+    
 
     return (
         <section className="form">
@@ -113,7 +127,18 @@ const Form = (props) => {
             <section className="buttons-img">
                 <button className="btn">Subir foto de proyecto</button>
                 <button className="btn">Subir foto de autora</button>
+
+                <GetAvatar 
+                text = "Subir foto de proyecto"
+                avatar = {data.image}
+                updateAvatar = {handleImage}/>
+                <GetAvatar 
+                text = "Subir foto de autora"
+                avatar = {data.photo}
+                updateAvatar = {handlePhoto}/>
+
             </section>
+
             <section className="buttons-img">
                 <button className="btn-large" onClick={handleClickCreateCard}>
                     Crear Tarjeta

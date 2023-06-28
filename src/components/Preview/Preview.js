@@ -1,8 +1,11 @@
+
+
+ 
 const Preview = () => {
 
     return (
         <section className="preview">
-            <img className="image" src={cover} alt="" />
+            <img className="image" src={data.image || cover} alt="" />
 
             <section className="autor">
                 <section className="info-project">
