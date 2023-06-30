@@ -40,6 +40,7 @@ const Form = ({data, errors, handleInput, url, successMessage, handleClickCreate
                     name="repo"
                     id="repo"
                     placeholder="Repo"
+                    value={data.repo}
                     onInput={handleInput}
                 />
                 {errors.repo && (
@@ -50,6 +51,7 @@ const Form = ({data, errors, handleInput, url, successMessage, handleClickCreate
                     type="text"
                     placeholder="Demo"
                     name="demo"
+                    value={data.demo}
                     id="demo"
                     onInput={handleInput}
                 />
@@ -61,6 +63,7 @@ const Form = ({data, errors, handleInput, url, successMessage, handleClickCreate
                     type="text"
                     placeholder="Tecnologías"
                     name="technologies"
+                    value={data.technologies}
                     id="technologies"
                     onInput={handleInput}
                 />
@@ -72,6 +75,7 @@ const Form = ({data, errors, handleInput, url, successMessage, handleClickCreate
                     type="text"
                     placeholder="Descripción"
                     name="desc"
+                    value={data.desc}
                     id="desc"
                     onInput={handleInput}
                 ></textarea>

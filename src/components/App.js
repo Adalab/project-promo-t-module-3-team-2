@@ -26,6 +26,7 @@ function App() {
     photo: "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
   });
 
+  console.log(data);
   const [url, setUrl] = useState("");
   const [errors, setErrors] = useState({
     name: false,
