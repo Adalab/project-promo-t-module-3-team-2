@@ -112,6 +112,7 @@ const Form = ({data, errors, handleInput, url, successMessage, handleClickCreate
                     type="text"
                     placeholder="Nombre"
                     name="autor"
+                    value={data.autor}
                     id="autor"
                     onInput={handleInput}
                 />
@@ -123,6 +124,7 @@ const Form = ({data, errors, handleInput, url, successMessage, handleClickCreate
                     type="text"
                     placeholder="Trabajo"
                     name="job"
+                    value={data.job}
                     id="job"
                     onInput={handleInput}
                 />
