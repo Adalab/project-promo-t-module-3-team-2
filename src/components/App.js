@@ -8,6 +8,7 @@ import Footer from '../components/Footer/Footer.js';
 import Form from '../components/Form/Form.js';
 import Header from '../components/Header/Header.js';
 import Preview from './Preview/Preview.js';
+import GetAvatar from "./GetAvatar/GetAvatar.js";
 
 function App() {
   const [successMessage, setSuccessMessage] = useState(false);
@@ -22,11 +23,10 @@ function App() {
     desc: "",
     autor: "",
     job: "",
-    image: "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
-    photo: "https://imagen.research.google/main_gallery_images/a-brain-riding-a-rocketship.jpg",
+    image: "",
+    photo: "",
   });
 
-  console.log(data);
   const [url, setUrl] = useState("");
   const [errors, setErrors] = useState({
     name: false,
@@ -38,6 +38,14 @@ function App() {
     autor: false,
     job: false,
   });
+
+  const handleChangeForm = (parame1, value) =>{
+    const clonedData = {...data,[parame1]:value};
+    setData( clonedData);
+
+
+  }
+
 
   const handleInput = (ev) => {
     const { id, value } = ev.target;  //desestructuración id y value
@@ -81,15 +89,7 @@ function App() {
       <Header />
       <main className="main">
         <Preview data={data} />
-        <Form
-          data={data}
-          errors={errors}
-          handleInput={handleInput}
-          url={url}
-          successMessage={successMessage}
-          handleClickCreateCard={handleClickCreateCard}
-          errorMessage={errorMessage}
-        />
+        <Form data={data} errors={errors} handleInput={handleInput}url={url} successMessage={successMessage} handleClickCreateCard={handleClickCreateCard} errorMessage={errorMessage} handleChangeForm = {handleChangeForm}/>
       </main>
     </div>
   );
