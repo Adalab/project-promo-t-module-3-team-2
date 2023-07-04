@@ -14,18 +14,23 @@
         transform: translate(-50%, -50%);
         text-align: center;
         font-size: 1.5rem;
+        padding-bottom: 10px;
     }
     &__text {
         position: relative;
-        top: 50%;
+        top: 45%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+        @media screen and(min-width: 768px) {
+            padding-top: 5%;
+        }
+    
         
     }
     &__button {
         position: relative;
-        top: 50%;
+        top: 45%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -36,5 +41,12 @@
             text-decoration: none;
             color:blueviolet;   
         }
+        @media screen and (min-width:768px) {
+            top: 32%;
+        }
     }
+}
+
+.team-name {
+    text-shadow: 2px 2px 4px lightblue;
 }
