@@ -107,6 +107,7 @@ function App() {
                 errorMessage={errorMessage}
                 handleChangeForm={handleChangeForm}
               />
+              <Footer />
             </>
           }
         />
