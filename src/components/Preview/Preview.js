@@ -1,4 +1,4 @@
-import cover from "../../images/cover.jpeg";
+import cover from "../../images/vibes-logo.jpg";
 import user from "../../images/user.jpeg";
 import "../../styles/App.scss";
 
