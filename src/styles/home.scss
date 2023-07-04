@@ -18,19 +18,17 @@
     }
     &__text {
         position: relative;
-        top: 45%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        @media screen and(min-width: 768px) {
-            padding-top: 5%;
-        }
+       
     
         
     }
     &__button {
         position: relative;
-        top: 45%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -42,7 +40,7 @@
             color:blueviolet;   
         }
         @media screen and (min-width:768px) {
-            top: 32%;
+            top: 40%;
         }
     }
 }

@@ -169,7 +169,9 @@ const Form = ({
         )}
         {errorMessage && (
           <>
-            <p className="errorMsg">Error al crear la tarjeta</p>
+            <p className="errorMsg">
+              Error al crear la tarjeta. Por favor, revisa todos los campos.
+            </p>
             <a href={url} className="errorMsg" target="_blank" rel="noreferrer">
               {url}
             </a>
