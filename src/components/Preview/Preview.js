@@ -14,7 +14,7 @@ const Preview = ({ data }) => {
 
           <h2 className="title">{data.name || "Todo sobre Laura Winslow"}</h2>
           <p className="slogan">{data.slogan || "¿He sido yo?"}</p>
-          <p className="desc">{data.desc}</p>
+          <p className="desc">{data.desc || "Proyecto sobre la bella Laura"}</p>
           <section className="technologies">
             <p className="text">
               {data.technologies || "56k de cobre vía módem"}

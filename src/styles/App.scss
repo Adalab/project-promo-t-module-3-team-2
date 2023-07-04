@@ -232,9 +232,23 @@
 }
 
 .card {
-  color: black;
+  color: purple;
   text-align: center;
   padding: 20px;
+}
+
+.successMsg {
+  text-align: center;
+}
+
+.successMsg-link {
+  text-decoration: none;
+  display: block;
+  color: #0f6e67;
+  background-color: #ffffff;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .hidden {
@@ -258,4 +272,8 @@
 
 .info-autor {
   height: 200px;
+}
+
+.desc {
+  text-align: center;
 }
