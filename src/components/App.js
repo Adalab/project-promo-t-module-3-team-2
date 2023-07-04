@@ -12,6 +12,7 @@ import GetAvatar from "./GetAvatar/GetAvatar.js";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.js";
 import Main from "./Main.js";
+import "../styles/App.scss";
 
 function App() {
   const [successMessage, setSuccessMessage] = useState(false);
@@ -89,22 +90,24 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/main"
           element={
-            <Main
-              data={data}
-              errors={errors}
-              handleInput={handleInput}
-              url={url}
-              successMessage={successMessage}
-              handleClickCreateCard={handleClickCreateCard}
-              errorMessage={errorMessage}
-              handleChangeForm={handleChangeForm}
-            />
+            <>
+              <Header />
+              <Main
+                data={data}
+                errors={errors}
+                handleInput={handleInput}
+                url={url}
+                successMessage={successMessage}
+                handleClickCreateCard={handleClickCreateCard}
+                errorMessage={errorMessage}
+                handleChangeForm={handleChangeForm}
+              />
+            </>
           }
         />
         <Route path="*" element={<h2>Error 404: Página no encontrada</h2>} />
