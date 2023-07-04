@@ -21,6 +21,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+        
     }
     &__button {
         position: relative;
@@ -30,8 +31,10 @@
         text-align: center;
         padding: 10px;
         margin-top: 8%;
+        border-radius: 15px;
         &--link {
             text-decoration: none;
+            color:blueviolet;   
         }
     }
 }
