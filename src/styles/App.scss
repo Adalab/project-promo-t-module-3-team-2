@@ -138,7 +138,7 @@
 }
 
 .main .preview .autor {
-  background-color: white;
+  background-color: hotpink;
   color: #3e3e3e;
   justify-content: center;
   height: 60%;
@@ -181,7 +181,7 @@
   text-align: center;
 }
 .info-project .title {
-  font-size: 20px;
+  font-size: 18px;
   color: black;
   margin-bottom: 10px;
 }
@@ -192,8 +192,9 @@
 }
 
 .info-project .slogan {
-  font-size: 14px;
+  font-size: 17px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .info-project .line {
@@ -227,6 +228,7 @@
   font-size: 14px;
   padding: 10px;
   width: 100%;
+  text-align: center;
 }
 
 .card {
