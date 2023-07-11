@@ -1,17 +1,18 @@
 .home {
   margin: 0;
-  padding-top: 100px;
+
   width: 100vw;
   height: 100vh;
   background-image: url('../images/home-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  
+
   &__title {
     font-size: 1.5rem;
     padding-bottom: 10px;
@@ -27,14 +28,11 @@
     padding: 10px;
     border-radius: 15px;
     background-color: #97d8df;
-   border: 2px solid black;
-text-decoration: none;
+    border: 2px solid black;
+    text-decoration: none;
     color: #fd5aba;
-    font-size: 18px;
-  cursor: pointer;
-    /* @media screen and (min-width: 768px) {
-      top: 40%;
-    } */
+    font-size: 1.2rem;
+    cursor: pointer;
   }
 }
 
@@ -42,10 +40,10 @@ text-decoration: none;
   text-shadow: 2px 2px 4px lightblue;
 }
 
-.home__button:hover{
-    background-color: #fd5aba;
-    color: #97d8df;
+.home__button:hover {
+  background-color: #fd5aba;
+  color: #97d8df;
 }
-.home__button--link:hover{
-    color: #97d8df;
+.home__button--link:hover {
+  color: #97d8df;
 }
