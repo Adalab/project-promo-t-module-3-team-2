@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom';
 import '../../styles/home.scss';
-import GetAvatar from '../GetAvatar/GetAvatar';
+
 
 function Home() {
   const archivedProjects = [
     {
       id: 1,
-      name: '',
-      slogan: '',
-      technologies: '',
-      repo: '',
-      demo: '',
-      desc: '',
-      autor: '',
-      job: '',
-      photo: '',
-      image: '',
+      name: 'Mari Carmen',
+      slogan: 'Create your own card',
+      technologies: 'JavaScript  React',
+      repo: 'xxxxxxxxxxxxxx',
+      demo: 'xxxxxxxxxxxxxx',
+      desc: 'xxxxxxxxxxxxxx',
+      autor: 'Mari Carmen',
+      job: 'Desarrolladora Full Stack',
+      photo: 'xxxxxxxxxxxxxx',
+      image: 'xxxxxxxxxxxxxx',
     },
     {
       id: 2,
@@ -34,7 +34,19 @@ function Home() {
   const renderList = () => {
     return archivedProjects.map((eachProject) => (
       <li>
-        <GetAvatar eachProject={eachProject} />
+        {/* <GetAvatar eachProject={eachProject} /> */}
+        <h2> {eachProject.name}</h2>
+        <h3>{eachProject.slogan}</h3>
+        <p>{eachProject.technologies}</p>
+        <p>{eachProject.desc}</p>
+        <p>{eachProject.autor}</p>
+        <p>{eachProject.job}</p>
+        <a href={eachProject.repo}>
+          <button>Github</button>
+        </a>
+        <a href={eachProject.demo}>
+          <button>Demo</button>
+        </a>
       </li>
     ));
   };
