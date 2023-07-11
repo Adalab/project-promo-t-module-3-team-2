@@ -1,7 +1,43 @@
 import { Link } from 'react-router-dom';
 import '../../styles/home.scss';
+import GetAvatar from '../GetAvatar/GetAvatar';
 
 function Home() {
+  const archivedProjects = [
+    {
+      id: 1,
+      name: '',
+      slogan: '',
+      technologies: '',
+      repo: '',
+      demo: '',
+      desc: '',
+      autor: '',
+      job: '',
+      photo: '',
+      image: '',
+    },
+    {
+      id: 2,
+      name: '',
+      slogan: '',
+      technologies: '',
+      repo: '',
+      demo: '',
+      desc: '',
+      autor: '',
+      job: '',
+      photo: '',
+      image: '',
+    },
+  ];
+  const renderList = () => {
+    return archivedProjects.map((eachProject) => (
+      <li>
+        <GetAvatar eachProject={eachProject} />
+      </li>
+    ));
+  };
   return (
     <div className='home'>
       <h1 className='home__title team-name'> The 90's developers </h1>
@@ -10,6 +46,7 @@ function Home() {
       <Link className='home__button--link' to='/main'>
         <button className='home__button'>Bienvenidxs</button>
       </Link>
+      <ul>{renderList()}</ul>
     </div>
   );
 }
